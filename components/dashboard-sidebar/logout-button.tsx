@@ -12,8 +12,6 @@ const LogoutButton = () => {
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
 
-  console.log({ showConfirm });
-
   const handleLogout = () => {
     startTransition(async () => {
       try {

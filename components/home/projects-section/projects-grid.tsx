@@ -61,7 +61,6 @@ const ProjectsGrid = ({ className }: ProjectsGridProps) => {
   } = useSWR<ProjectsResponse>(`${apiBaseUrl}/projects?${query}`, fetcher);
 
   const projects = response?.data ?? [];
-  console.log({ projects });
 
   return (
     <>
