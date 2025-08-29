@@ -13,16 +13,18 @@ export const useAuth = () => {
         });
 
         const data = await res.json();
+        console.log("is-auth response:", data);
 
-        if (!res.ok) {
+        if (!res.ok || !data.success) {
           setIsLoggedIn(false);
           setUserId(null);
-        } else {
-          setIsLoggedIn(true);
-          setUserId(data.user);
+          return;
         }
+
+        setIsLoggedIn(true);
+        setUserId(data.user);
       } catch (error) {
-        console.log(error);
+        console.error("fetchAuth error:", error);
         setIsLoggedIn(false);
         setUserId(null);
       }

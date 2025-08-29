@@ -27,7 +27,6 @@ const CertificateItem = ({
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [showConfirm, setShowConfirm] = useState<boolean>(false);
   const [isPending, startTransition] = useTransition();
-  console.log(previewImage);
 
   const handleDeleteCertificate = () => {
     startTransition(async () => {

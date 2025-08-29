@@ -35,7 +35,6 @@ const NavbarMenu = ({
     );
 
     const elements: Element[] = [];
-    console.log(elements);
 
     menuItem.forEach((menu) => {
       const el = document.getElementById(menu.href.slice(1));
@@ -44,8 +43,6 @@ const NavbarMenu = ({
         elements.push(el);
       }
     });
-
-    console.log({ observer });
 
     return () => {
       elements.forEach((el) => observer.unobserve(el));
