@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useRef } from "react";
 
@@ -34,7 +35,7 @@ const Popup = ({ title, closePopup, children }: PopupType) => {
 
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [closePopup]);
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-[3%]">
       <Card ref={cardRef} className="w-full max-w-sm">
         <CardHeader>
@@ -46,7 +47,8 @@ const Popup = ({ title, closePopup, children }: PopupType) => {
           {children}
         </CardContent>
       </Card>
-    </div>
+    </div>,
+    document.body,
   );
 };
 

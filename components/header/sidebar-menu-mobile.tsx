@@ -2,6 +2,8 @@ import clsx from "clsx";
 import { CodeXml, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import ButtonTheme from "./button-theme";
+import { Button } from "../ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 type SidebarMenuMobileProps = {
   isOpen: boolean;
@@ -14,6 +16,7 @@ const SidebarMenuMobile = ({
   setIsOpen,
   menuItem,
 }: SidebarMenuMobileProps) => {
+  const { isLoggedIn } = useAuth();
   return (
     <aside
       className={clsx(
@@ -48,6 +51,17 @@ const SidebarMenuMobile = ({
                 </Link>
               </li>
             ))}
+            {isLoggedIn && (
+              <li onClick={() => setIsOpen(false)}>
+                <Button
+                  size="lg"
+                  className="bg-darkBlue hover:bg-darkBlue/90 dark:text-electricViolet w-full cursor-pointer justify-start rounded-none text-base dark:bg-white"
+                  asChild
+                >
+                  <Link href="/dashboard/projects">Dashboard</Link>
+                </Button>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

@@ -70,9 +70,9 @@ const ProjectsGrid = ({ className }: ProjectsGridProps) => {
         variants={container}
         initial="hidden"
         {...(pathname === "/" && !searchParams.get("category")
-          ? { whileInView: "show", viewport: { once: true, amount: 0.2 } }
+          ? { whileInView: "show", viewport: { once: true, amount: 0.1 } }
           : { animate: "show" })}
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
         className={clsx(
           "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3",
           className,

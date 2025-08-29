@@ -43,9 +43,9 @@ const LogoutButton = () => {
         size="lg"
         variant="destructive"
         onClick={() => setShowConfirm(true)}
-        className="mt-auto w-full cursor-pointer rounded-none"
+        className="mt-auto w-full cursor-pointer justify-start rounded-none md:justify-center"
       >
-        <CiLogout /> Logout
+        <CiLogout size={16} /> Logout
       </Button>
 
       {showConfirm && (

@@ -4,6 +4,7 @@ import { Button } from "../ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import clsx from "clsx";
+import LogoutButton from "./logout-button";
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
@@ -21,7 +22,7 @@ const Sidebar = () => {
 
       <aside
         className={clsx(
-          "text-darkBlue fixed top-0 left-0 z-50 h-screen w-3/5 transform flex-col bg-slate-50 shadow-md transition-transform duration-300 lg:relative lg:flex lg:w-72 lg:translate-x-0 dark:bg-slate-800",
+          "text-darkBlue fixed top-0 left-0 z-50 h-screen w-3/5 flex-col bg-slate-50 shadow-md transition-transform duration-300 lg:relative lg:flex lg:w-72 lg:translate-x-0 dark:bg-slate-800",
           {
             "translate-x-0": isOpen,
             "-translate-x-full": !isOpen,
@@ -48,6 +49,9 @@ const Sidebar = () => {
           </p>
           <SidebarMenuItems onClose={setIsOpen} />
         </div>
+
+        {/* Logout */}
+        <LogoutButton />
       </aside>
     </>
   );
