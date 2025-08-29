@@ -7,6 +7,7 @@ import FooterWrapper from "@/components/footer/footer-wrapper";
 import { Toaster } from "sonner";
 import { ProjectFilterProvider } from "@/context/projects-filter-context";
 import { Suspense } from "react";
+import LoaderCircle from "@/components/loader-circle";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -58,7 +59,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${interFont.className} antialiased`}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <div className="fixed inset-0 flex items-center justify-center">
+              <div className="h-8 w-8">
+                <LoaderCircle />
+              </div>
+            </div>
+          }
+        >
           <ProjectFilterProvider>
             <ThemeProvider
               attribute="class"
