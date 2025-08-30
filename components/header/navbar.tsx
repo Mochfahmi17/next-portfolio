@@ -18,6 +18,7 @@ import { FaCode } from "react-icons/fa";
 import ButtonTheme from "./button-theme";
 import clsx from "clsx";
 import { easeOut, motion } from "motion/react";
+import { useAuth } from "@/hooks/useAuth";
 
 const menuItem = [
   {
@@ -53,7 +54,7 @@ const menuItem = [
 ];
 
 const Navbar = () => {
-  // const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const [scroll, setScroll] = useState(false);
@@ -130,14 +131,14 @@ const Navbar = () => {
 
       {/* Darkmode button */}
       <div className="hidden items-center gap-2 lg:flex">
-        {/* {isLoggedIn && (
-        )} */}
-        <Button
-          className="bg-darkBlue hover:bg-darkBlue/90 dark:text-electricViolet cursor-pointer dark:bg-white"
-          asChild
-        >
-          <Link href="/dashboard/projects">Dashboard</Link>
-        </Button>
+        {isLoggedIn && (
+          <Button
+            className="bg-darkBlue hover:bg-darkBlue/90 dark:text-electricViolet cursor-pointer dark:bg-white"
+            asChild
+          >
+            <Link href="/dashboard/projects">Dashboard</Link>
+          </Button>
+        )}
         <ButtonTheme />
       </div>
     </motion.header>
