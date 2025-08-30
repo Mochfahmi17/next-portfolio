@@ -59,8 +59,6 @@ const EditProjectForm = ({ initialData }: EditProjectFormProps) => {
           formData.append("linkRepository", values.linkRepository);
         }
 
-        console.log("ini adalah formdata: ", formData);
-
         const res = await fetch(
           `${apiBaseUrl}/projects/edit/${initialData.slug}`,
           {

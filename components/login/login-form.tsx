@@ -18,6 +18,7 @@ import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { apiBaseUrl } from "@/lib/api";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -35,11 +36,10 @@ const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     startTransition(async () => {
       try {
-        const res = await fetch("/api/auth/login", {
+        const res = await fetch(`${apiBaseUrl}/auth/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
-          credentials: "include",
         });
 
         const data = await res.json();
