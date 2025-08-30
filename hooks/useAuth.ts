@@ -13,7 +13,6 @@ export const useAuth = () => {
         });
 
         const data = await res.json();
-        console.log("is-auth response:", data);
 
         if (!res.ok || !data.success) {
           setIsLoggedIn(false);
