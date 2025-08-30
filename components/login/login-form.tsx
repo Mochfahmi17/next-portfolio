@@ -40,6 +40,7 @@ const LoginForm = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
+          credentials: "include",
         });
 
         const data = await res.json();
