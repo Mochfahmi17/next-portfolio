@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST() {
   const res = await fetch(`${apiBaseUrl}/auth/logout`, {
     method: "POST",
-    credentials: "include",
   });
 
   const data = await res.json().catch(() => ({}));

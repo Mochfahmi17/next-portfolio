@@ -7,7 +7,7 @@ import SkillsSection from "@/components/home/skills-section/skills-section";
 
 export default function Home() {
   return (
-    <main className="text-darkBlue dark:via-midnightIndigo dark:to-electricViolet dark:bg-midnightBlue bg-white dark:bg-gradient-to-tr">
+    <main className="text-darkBlue dark:via-midnightIndigo dark:to-electricViolet dark:bg-midnightBlue min-h-screen bg-white dark:bg-gradient-to-tr">
       <HeroSection />
       <AboutSection />
       <ProjectsSection />
