@@ -6,9 +6,9 @@ export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("accessToken")?.value;
 
-  if (!token && pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // if (!token && pathname.startsWith("/dashboard")) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   if (token && authRoutes.some((route) => pathname.startsWith(route))) {
     return NextResponse.redirect(new URL("/", request.url));
