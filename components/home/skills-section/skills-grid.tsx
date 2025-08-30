@@ -45,9 +45,9 @@ const SkillsGrid = () => {
       variants={container}
       initial="hidden"
       {...(pathname === "/"
-        ? { whileInView: "show", viewport: { once: true, amount: 0.2 } }
+        ? { whileInView: "show", viewport: { once: true, amount: 0.1 } }
         : { animate: "show" })}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.1 }}
       className={`${routeIsDashboard ? "mt-8" : "mt-18"} grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3`}
     >
       {isLoading ? (
