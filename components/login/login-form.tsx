@@ -15,7 +15,6 @@ import { loginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
-import { apiBaseUrl } from "@/lib/api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
@@ -36,11 +35,10 @@ const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     startTransition(async () => {
       try {
-        const res = await fetch(`${apiBaseUrl}/auth/login`, {
+        const res = await fetch("/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
-          credentials: "include",
         });
 
         const data = await res.json();

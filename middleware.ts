@@ -6,7 +6,6 @@ const authRoutes = ["/login"];
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("accessToken")?.value;
-  console.log({ token });
 
   if (!token && pathname.startsWith(dashboardRoutes)) {
     return NextResponse.redirect(new URL("/", request.nextUrl));

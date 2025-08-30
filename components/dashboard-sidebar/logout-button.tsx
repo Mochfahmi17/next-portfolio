@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { useState, useTransition } from "react";
 import { CiLogout } from "react-icons/ci";
 import Popup from "../popup/popup";
-import { apiBaseUrl } from "@/lib/api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -15,9 +14,8 @@ const LogoutButton = () => {
   const handleLogout = () => {
     startTransition(async () => {
       try {
-        const res = await fetch(`${apiBaseUrl}/auth/logout`, {
+        const res = await fetch("/api/auth/logout", {
           method: "POST",
-          credentials: "include",
         });
 
         const data = await res.json();
