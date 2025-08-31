@@ -1,18 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const dashboardRoutes = "/dashboard";
-const authRoutes = ["/login"];
-
 export default function middleware(request: NextRequest) {
+  const token = request.cookies.get("accessToken");
   const { pathname } = request.nextUrl;
-  const token = request.cookies.get("accessToken")?.value;
 
-  if (!token && pathname.startsWith(dashboardRoutes)) {
-    return NextResponse.redirect(new URL("/", request.nextUrl));
+  const protectedRoutes = ["/dashboard"];
+  const authRoutes = ["/login"];
+
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    pathname.startsWith(route),
+  );
+  const isAuthRoute = authRoutes.some((route) => pathname.startsWith(route));
+
+  if (isProtectedRoute && !token) {
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
-  if (token && authRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL("/", request.nextUrl));
+  if (isAuthRoute && token) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();
