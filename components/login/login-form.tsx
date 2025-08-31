@@ -16,14 +16,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import { apiBaseUrl } from "@/lib/api";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
+  const searchParams = useSearchParams();
   const router = useRouter();
+
+  const redirect = searchParams.get("redirect") || "/";
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -52,7 +55,7 @@ const LoginForm = () => {
 
         toast.success(data.message);
 
-        router.push("/");
+        router.push(redirect);
       } catch (error) {
         console.error(error);
         toast.error("Terjadi kesalahan");

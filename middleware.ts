@@ -1,8 +1,11 @@
+import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-export default function middleware(request: NextRequest) {
-  const token = request.cookies.get("accessToken");
+export default async function middleware(request: NextRequest) {
+  const token = (await cookies()).get("accessToken")?.value;
   const { pathname } = request.nextUrl;
+
+  console.log("path: ", pathname, "token: ", token);
 
   const protectedRoutes = ["/dashboard"];
   const authRoutes = ["/login"];
